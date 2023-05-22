@@ -127,22 +127,21 @@ class ImageNet98p(ImageNet):
 
     def get_train_sampler(self):
         idx_file = 'imagenet_98_idxs.npy'
-        assert os.path.exists(idx_file)
-        #if os.path.exists(idx_file):
-        with open(idx_file, 'rb') as f:
-            idxs = np.load(f)
-        # else:
-        #     idxs = np.zeros(len(self.train_dataset.targets))
-        #     target_array = np.array(self.train_dataset.targets)
-        #     for c in range(1000):
-        #         m = target_array == c
-        #         n = len(idxs[m])
-        #         arr = np.zeros(n)
-        #         arr[:26] = 1
-        #         np.random.shuffle(arr)
-        #         idxs[m] = arr
-        #     with open(idx_file, 'wb') as f:
-        #         np.save(f, idxs)
+        if os.path.exists(idx_file):
+            with open(idx_file, 'rb') as f:
+                idxs = np.load(f)
+        else:
+             idxs = np.zeros(len(self.train_dataset.targets))
+             target_array = np.array(self.train_dataset.targets)
+             for c in range(1000):
+                 m = target_array == c
+                 n = len(idxs[m])
+                 arr = np.zeros(n)
+                 arr[:26] = 1
+                 np.random.shuffle(arr)
+                 idxs[m] = arr
+             with open(idx_file, 'wb') as f:
+                 np.save(f, idxs)
 
         idxs = (1 - idxs).astype('int')
         sampler = SubsetRandomSampler(np.where(idxs)[0])
