@@ -200,17 +200,17 @@ if __name__ == '__main__':
     # Step 5: Plot.
     if args.plot:
         individual_model_db = pd.read_json(INDIVIDUAL_MODEL_RESULTS_FILE, lines=True)
-        individual_model_db['OOD'] = 1./5 * (individual_model_db['ImageNetV2'] + 
+        individual_model_db['OOD'] = 1./4 * (individual_model_db['ImageNetV2'] + 
             individual_model_db['ImageNetR'] + individual_model_db['ImageNetSketch'] + 
-            individual_model_db['ObjectNet'] + individual_model_db['ImageNetA'])
+            individual_model_db['ImageNetA'])
         uniform_soup_db = pd.read_json(UNIFORM_SOUP_RESULTS_FILE, lines=True)
-        uniform_soup_db['OOD'] = 1./5 * (uniform_soup_db['ImageNetV2'] + 
+        uniform_soup_db['OOD'] = 1./4 * (uniform_soup_db['ImageNetV2'] + 
             uniform_soup_db['ImageNetR'] + uniform_soup_db['ImageNetSketch'] + 
-            uniform_soup_db['ObjectNet'] + uniform_soup_db['ImageNetA'])
+            uniform_soup_db['ImageNetA'])
         greedy_soup_db = pd.read_json(GREEDY_SOUP_RESULTS_FILE, lines=True)
-        greedy_soup_db['OOD'] = 1./5 * (greedy_soup_db['ImageNetV2'] + 
+        greedy_soup_db['OOD'] = 1./4 * (greedy_soup_db['ImageNetV2'] + 
             greedy_soup_db['ImageNetR'] + greedy_soup_db['ImageNetSketch'] + 
-            greedy_soup_db['ObjectNet'] + greedy_soup_db['ImageNetA'])
+            greedy_soup_db['ImageNetA'])
 
         fig = plt.figure(constrained_layout=True, figsize=(8, 6))
         ax = fig.subplots()
@@ -255,7 +255,7 @@ if __name__ == '__main__':
             zorder=10
         )
 
-        ax.set_ylabel('Avg. accuracy on 5 distribution shifts', fontsize=16)
+        ax.set_ylabel('Avg. accuracy on 4 distribution shifts', fontsize=16)
         ax.set_xlabel('ImageNet Accuracy (top-1%)', fontsize=16)
         ax.grid()
         ax.legend(fontsize=13)
