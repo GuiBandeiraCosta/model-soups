@@ -221,7 +221,7 @@ if __name__ == '__main__':
         ax = fig.subplots()
 
         ax.scatter(
-            greedy_soup_db['ImageNet'], 
+            greedy_soup_db['ImageNet100'], 
             greedy_soup_db['OOD'], 
             marker='*', 
             color='C4',
@@ -231,7 +231,7 @@ if __name__ == '__main__':
         )
 
         ax.scatter(
-            uniform_soup_db['ImageNet'], 
+            uniform_soup_db['ImageNet100'], 
             uniform_soup_db['OOD'], 
             marker='o', 
             color='C0',
@@ -241,7 +241,7 @@ if __name__ == '__main__':
         )
 
         ax.scatter(
-            individual_model_db['ImageNet'].values[0], 
+            individual_model_db['ImageNet100'].values[0], 
             individual_model_db['OOD'].values[0], 
             marker='h', 
             color='slategray',
@@ -251,7 +251,7 @@ if __name__ == '__main__':
         )
 
         ax.scatter(
-            individual_model_db['ImageNet'].values[1:], 
+            individual_model_db['ImageNet100'].values[1:], 
             individual_model_db['OOD'].values[1:], 
             marker='d', 
             color='C2',
@@ -261,7 +261,7 @@ if __name__ == '__main__':
         )
 
         ax.set_ylabel('Avg. accuracy on 4 distribution shifts', fontsize=16)
-        ax.set_xlabel('ImageNet Accuracy (top-1%)', fontsize=16)
+        ax.set_xlabel('ImageNet-100 Accuracy (top-1%)', fontsize=16)
         ax.grid()
         ax.legend(fontsize=13)
         plt.savefig('figure.png', bbox_inches='tight')
