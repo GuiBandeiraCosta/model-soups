@@ -136,7 +136,7 @@ class ImageNet100:
         return ImageFolderWithPaths(self.get_test_path(), transform=self.preprocess)
 
     def name(self):
-        return 'imagenet'
+        return 'imagenet100'
 
 
 
