@@ -53,13 +53,18 @@ def parse_arguments():
         type=int,
         default=8,
     )
+    parser.add_argument(
+        "--n-models",
+        type=int,
+        default=72,
+    )
     return parser.parse_args()
 
 
 
 if __name__ == '__main__':
     args = parse_arguments()
-    NUM_MODELS = 72
+    NUM_MODELS = args.n_models
     INDIVIDUAL_MODEL_RESULTS_FILE = 'individual_model_results.jsonl'
     UNIFORM_SOUP_RESULTS_FILE = 'uniform_soup_results.jsonl'
     GREEDY_SOUP_RESULTS_FILE = 'greedy_soup_results.jsonl'
