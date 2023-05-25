@@ -250,7 +250,7 @@ def test_model_on_dataset(model, dataset):
         top1, correct, n = 0., 0., 0.
         end = time.time()
         loader = dataset.test_loader
-        
+
         for i, batch in enumerate(loader):
             batch = maybe_dictionarize_batch(batch)
             inputs, labels = batch['images'].cuda(), batch['labels'].cuda()
@@ -271,13 +271,15 @@ def test_model_on_dataset(model, dataset):
                 logits = logits[0]
 
             pred = logits.argmax(dim=1, keepdim=True).to(device)
-             #This part compares both list to check if they try to guess the same thing 
+            #This part compares both list to check if they try to guess the same thing 
             # because the labels numbers for imageNet and ImageNet100 are different
-            for j in range(len(pred)):
-              key1 = y[j].item()
-              key2 = pred[j].item()
-              if(imagenet100_classnames[key1] == openai_classnames[key2]):
-                pred[j] = key1
+            #The rest of the datasets use the labels from ImageNet so no need to check
+            if type(dataset).__name__ == 'ImageNet100' or type(dataset).__name__ == 'ImageNet2p' :
+              for j in range(len(pred)):
+                key1 = y[j].item()
+                key2 = pred[j].item()
+                if(imagenet100_classnames[key1] == openai_classnames[key2]):
+                  pred[j] = key1
 
             if hasattr(dataset, 'accuracy'): #Never Enters
                 acc1, num_total = dataset.accuracy(logits, y, image_paths, None)
