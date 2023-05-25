@@ -8,7 +8,7 @@ import time
 
 from timm.data.transforms_factory import transforms_imagenet_train
 
-from datasets.imagenet import ImageNet98p, ImageNet
+from datasets.imagenet import ImageNet98p, ImageNet100
 from utils import ModelWrapper, maybe_dictionarize_batch, cosine_lr
 from zeroshot import zeroshot_classifier
 from openai_imagenet_template import openai_imagenet_template
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     else:
         train_preprocess = preprocess
     train_dset = ImageNet98p(train_preprocess, location=args.data_location, batch_size=args.batch_size, num_workers=args.workers)
-    test_dset = ImageNet(preprocess, location=args.data_location, batch_size=args.batch_size, num_workers=args.workers)
+    test_dset = ImageNet100(preprocess, location=args.data_location, batch_size=args.batch_size, num_workers=args.workers)
     clf = zeroshot_classifier(base_model, train_dset.classnames, template, DEVICE)
     NUM_CLASSES = len(train_dset.classnames)
     feature_dim = base_model.visual.output_dim
