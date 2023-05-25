@@ -164,6 +164,32 @@ openai_classnames = ["tench", "goldfish", "great white shark", "tiger shark", "h
                         "rose hip", "horse chestnut seed", "coral fungus", "agaric", "gyromitra", "stinkhorn mushroom",
                         "earth star fungus", "hen of the woods mushroom", "bolete", "corn cob", "toilet paper"]
 
+
+imagenet100_classnames = ['tench', 'goldfish', 'great white shark', 'tiger shark', 'hammerhead shark', 
+                        'electric ray', 'stingray', 'rooster', 'hen', 
+                        'goldfinch', 'indigo bunting', 'bulbul', 'magpie', 'chickadee', 'American dipper', 'kite (bird of prey)', 
+                        'bald eagle', 'great grey owl', 
+                        'newt', 'spotted salamander', 'axolotl', 'tailed frog', 'loggerhead sea turtle', 
+                        'leatherback sea turtle', 'mud turtle', 'terrapin', 
+                        'banded gecko', 'green iguana', 'desert grassland whiptail lizard', 'agama', 'European green lizar', 'Komodo dragon', 
+                        'American alligator', 'worm snake', 
+                        'eastern hog-nosed snake', 'smooth green snake', 'kingsnake', 'garter snake', 'vine snake', 
+                        'night snake', 'boa constrictor', 'green mamba', 
+                        'sea snake', 'Saharan horned viper', 'eastern diamondback rattlesnake', 'sidewinder', 'harvestman', 'scorpion',
+                          'yellow garden spider', 
+                        'barn spider', 'European garden spider', 'southern black widow', 'tarantula', 'wolf spider', 
+                        'tick', 'black grouse', 'ptarmigan', 
+                        'prairie grouse', 'peafowl', 'macaw', 'sulphur-crested cockatoo', 
+                        'lorikeet', 'coucal', 'bee eater', 'hornbill', 
+                        'hummingbird', 'toucan', 'duck', 'goose', 'black swan', 'wallaby',
+                          'wombat', 'jellyfish', 'sea anemone', 'flatworm', 
+                        'nematode', 'conch', 'snail', 'sea slug', 'chiton', 
+                        'chambered nautilus', 'Dungeness crab', 'rock crab', 'spiny lobster', 
+                        'crayfish', 'hermit crab', 'white stork', 'spoonbill', 
+                        'flamingo', 'bittern bird', 'crane bird', 
+                        'limpkin', 'American coot', 'bustard', 'dunlin', 
+                        '"common redshank', 'oystercatcher', 'pelican', 'albatross', 'sea lion']
+
 synset_classnames = [
     ['tench', ' Tinca tinca'],
     ['goldfish', ' Carassius auratus'],
@@ -1316,4 +1342,6 @@ objectnet_classnames = ['Alarm clock',
 
 def get_classnames(source):
     return openai_classnames
+def get_classnames100(source):
+    return imagenet100_classnames
 
