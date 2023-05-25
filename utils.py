@@ -250,12 +250,7 @@ def test_model_on_dataset(model, dataset):
         top1, correct, n = 0., 0., 0.
         end = time.time()
         loader = dataset.test_loader
-        if type(dataset).__name__ == 'ImageNet2p':
-            loader = dataset.train_loader
-            # assert to make sure the imagenet held-out minival logic is consistent across machines.
-            # tested on a few machines but if this fails for you please submit an issue and we will resolve.
-            assert dataset.train_dataset.__getitem__(dataset.sampler.indices[1000])['image_paths'].endswith('n01675722_4108.JPEG')
-
+        
         for i, batch in enumerate(loader):
             batch = maybe_dictionarize_batch(batch)
             inputs, labels = batch['images'].cuda(), batch['labels'].cuda()

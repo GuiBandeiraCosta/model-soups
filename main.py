@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from datasets import ImageNet2p, ImageNet, ImageNetV2, ImageNetSketch, ImageNetR, ImageNetA
+from datasets import ImageNet2p, ImageNet100, ImageNetV2, ImageNetSketch, ImageNetR, ImageNetA
 from utils import get_model_from_sd, test_model_on_dataset
 
 def parse_arguments():
@@ -98,7 +98,7 @@ if __name__ == '__main__':
             # Note: ImageNet2p is the held-out minival set from ImageNet train that we use.
             # It is called 2p for 2 percent of ImageNet, or 26k images.
             # See utils on how this dataset is handled slightly differently.
-            for dataset_cls in [ImageNet2p, ImageNet, ImageNetV2, ImageNetSketch, ImageNetR, ImageNetA]:
+            for dataset_cls in [ImageNet2p, ImageNet100, ImageNetV2, ImageNetSketch, ImageNetR, ImageNetA]:
 
                 print(f'Evaluating model {j} of {NUM_MODELS - 1} on {dataset_cls.__name__}.')
 
@@ -130,7 +130,7 @@ if __name__ == '__main__':
         model = get_model_from_sd(uniform_soup, base_model)
 
         results = {'model_name' : f'uniform_soup'}
-        for dataset_cls in [ImageNet2p, ImageNet, ImageNetV2, ImageNetSketch, ImageNetR, ImageNetA]:
+        for dataset_cls in [ImageNet2p, ImageNet100, ImageNetV2, ImageNetSketch, ImageNetR, ImageNetA]:
 
             print(f'Evaluating on {dataset_cls.__name__}.')
 
@@ -192,7 +192,7 @@ if __name__ == '__main__':
         # Finally, evaluate the greedy soup.
         model = get_model_from_sd(greedy_soup_params, base_model)
         results = {'model_name' : f'greedy_soup'}
-        for dataset_cls in [ImageNet2p, ImageNet, ImageNetV2, ImageNetSketch, ImageNetR, ImageNetA]:
+        for dataset_cls in [ImageNet2p, ImageNet100, ImageNetV2, ImageNetSketch, ImageNetR, ImageNetA]:
             print(f'Evaluating on {dataset_cls.__name__}.')
             dataset = dataset_cls(preprocess, args.data_location, args.batch_size, args.workers)
             accuracy = test_model_on_dataset(model, dataset)
