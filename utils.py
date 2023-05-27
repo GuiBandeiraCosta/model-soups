@@ -274,6 +274,10 @@ def test_model_on_dataset(model, dataset):
             #This part compares both list to check if they try to guess the same thing 
             # because the labels numbers for imageNet and ImageNet100 are different
             #The rest of the datasets use the labels from ImageNet so no need to check
+
+            #Note: This method can produce some accuracy errors if the labels match by mistake 
+            # even if the prediction was wrong. However after testing with and without on 10 model finetuned on ImageNet100 we notice 
+            #that the difference does not go above 0.01 and therefore can be ignored .
             if type(dataset).__name__ == 'ImageNet100' or type(dataset).__name__ == 'ImageNet2p' :
               for j in range(len(pred)):
                 key1 = y[j].item()
